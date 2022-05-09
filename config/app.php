@@ -194,6 +194,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'DB' => Illuminate\Support\Facades\DB::class,
     ])->toArray(),
 
 ];
