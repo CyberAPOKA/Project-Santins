@@ -20,4 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/json', [UniversidadesController::class, 'json']);
 
-
+Route::post('/login', function(Request $request){
+    if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        $user = Auth::user();
+        $token = $user->createToken('JWT');
+        return response()->json($token->plainTextToken, '200');
+    }
+    return response()->json('Usuário invalido', '401');
+});
