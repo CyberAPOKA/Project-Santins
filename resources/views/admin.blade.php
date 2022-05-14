@@ -12,6 +12,18 @@
   </script>
  @endif
 
+@if(session('subscriptionExist'))
+  <script>
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Você já está inscrito nessa universidade!',
+
+})
+  </script>
+ @endif
+
+
 @if(session('subscription'))
   <script>
     Swal.fire({
@@ -35,7 +47,9 @@
 })
   </script>
  @endif
-
+  <div class="text-center">
+  <h1 style="color: black">SUPER ADMINISTRADOR</h1>
+</div>
     <section class="universidades">
         <div class="container-fluid">
                 <form action="{{ route('universidades.search') }}" method="POST">
@@ -69,11 +83,12 @@
 
                             @if($role == '1')
                             <button type="button" class="btn btn-primary form-control-lg">
-                                <a href="{{route('home.role')}}" class="a-button">
-                                   ADMIN
+                                <a href="{{route('universidades.index')}}" class="a-button">
+                                   Universidades
                                 </a>
                             </button>
                             @endif
+
 
                         </div>
                     </div>
@@ -88,7 +103,9 @@
                         <th scope="col">Domains</th>
                         <th scope="col">Name</th>
                         <th scope="col">Web pages</th>
-                        <th scope="col">INSCREVER-SE</th>
+                        <th scope="col">
+                            0 = Aprovadas
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -102,22 +119,23 @@
                             <td>{{$universidade->name}}</td>
                             <td>{{json_encode($universidade->web_pages)}}</td>
                             <td>
-                                @if ($universidade->status == 0)
-                                <form method="post" action="{{route('subscription.store')}}">
+                                <form method="post" action="{{route('universidades.status', $universidade->id)}}">
                                     @csrf
 
+                                                <select class="form-control" id="status" name="status">
+                                                    <option value="">{{$universidade->status}}</option>
+                                                    @if($universidade->status == 0)
+                                                    <option value="{{1}}">{{1}}</option>
+                                                        @else
+                                                        <option value="{{0}}">{{0}}</option>
+                                                        @endif
+                                                </select>
 
-                                    <input hidden type="text" name="subscribe" value="{{ $universidade->id }}">
-                                    <input hidden type="text" name="subscribe2" value="{{ $universidade->name }}">
-
-                                    <button type="submit" class="subscribe-button">
-                                            INSCREVER-SE
-                                    </button>
+                                                <button type="submit" class="form-control" name="subscribe">
+                                                        Confirmar
+                                                </button>
 
                                 </form>
-                                @else
-                                Aguardando aprovação
-                                @endif
                             </td>
                         </tr>
                           @endforeach

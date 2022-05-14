@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UniversidadesController;
 use App\Http\Controllers\SubscriptionsController;
-
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +17,17 @@ use App\Http\Controllers\SubscriptionsController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::middleware('auth:api')->get('/user', function(Request $request){
     return $request->user();
 });
+
+Route::get('/',[HomeController::class, 'index'])->name('home.index');
+
+Route::get('/home',[HomeController::class, 'role'])->name('home.role');
 
 Route::middleware([
     'auth:sanctum',
@@ -42,11 +46,15 @@ Route::middleware([
 
     Route::get('/universidades/create', [UniversidadesController::class, 'create'])->name('universidades.create');
 
-    Route::get('/universidades/create', [UniversidadesController::class, 'create'])->name('universidades.create');
+    //Route::get('/universidades/create', [UniversidadesController::class, 'create'])->name('universidades.create');
 
     Route::post('/universidades/store', [UniversidadesController::class, 'store'])->name('universidades.store');
 
     Route::get('/universidades/subscribe', [UniversidadesController::class, 'subscribe'])->name('universidades.subscribe');
 
     Route::delete('/subscription/remove/{id}', [SubscriptionsController::class, 'remove'])->name('subscription.remove');
+
+    Route::post('/universidades/status/{id}', [UniversidadesController::class, 'status'])->name('universidades.status');
+
+   // Route::get('/admin', [HomeController::class, 'admin'])->name('admin.admin');
 });

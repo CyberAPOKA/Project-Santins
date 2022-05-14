@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            //$table->integer('universidade_id')->nullable();
+            $table->integer('universidade_id')->nullable();
             $table->string('universidade_name')->nullable();
             $table->timestamps();
         });

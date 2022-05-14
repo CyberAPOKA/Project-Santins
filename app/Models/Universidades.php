@@ -11,6 +11,8 @@ class Universidades extends Model
 
     protected $table = 'universidades';
 
+    //protected $fillable = 'status';
+
     protected $casts = [
         'alpha_two_code'  => 'array',
         'country' => 'array',
@@ -18,8 +20,11 @@ class Universidades extends Model
         'name' => 'array',
         'state_province' => 'array',
         'web_pages' => 'array',
+        ];
 
-    ];
+        protected $fillable = [
+            'status',
+        ];
 
     public function user()
     {

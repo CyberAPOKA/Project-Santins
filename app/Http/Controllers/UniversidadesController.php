@@ -7,6 +7,7 @@ use App\Models\Universidades;
 use App\Models\User;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
+Use App\Http\Requests\UniversidadeRequest;
 
 class UniversidadesController extends Controller
 {
@@ -36,13 +37,15 @@ class UniversidadesController extends Controller
 
     public function index(){
 
+        $user = Auth::user();
+        $role = Auth::user()->role;
         $universidades = Universidades::latest()->orderBy('id', 'desc')->paginate(10);
 
-        return view('universidades', compact('universidades'));
+        return view('universidades', compact('universidades', 'user', 'role'));
     }
 
     public function search(Request $request){
-
+        $user = Auth::user();
         //dd("teste {$request->search}");
         $filters = $request->all();
 
@@ -55,18 +58,18 @@ class UniversidadesController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
-        return view('universidades', compact('universidades','filters'));
+        return view('universidades', compact('universidades','filters','user'));
 
     }
 
     public function create(Request $request){
+        $user = Auth::user();
 
-
-        return view('universidades_create');
+        return view('universidades_create', compact('user'));
 
     }
 
-    public function store(Request $request){
+    public function store(UniversidadeRequest $request){
 
         $universidades = new Universidades();
 
@@ -78,7 +81,7 @@ class UniversidadesController extends Controller
         $universidades->status = 1;
         $universidades->save();
 
-        return redirect()->back()->with('success', 'zzz');
+        return redirect()->route('universidades.index')->with('success', 'zzz');
     }
 
     public function subscribe(Request $request){
@@ -89,5 +92,18 @@ class UniversidadesController extends Controller
 
         return view('universidades_subscribe', compact('user','subscribe'));
     }
+
+    public function status(Request $request, $id){
+
+        $universidades = Universidades::find($id);
+        Universidades::find($id)->update([
+            'status' => $request->input('status'),
+        ]);
+
+
+        return redirect()->back();
+
+    }
+
 
 }
