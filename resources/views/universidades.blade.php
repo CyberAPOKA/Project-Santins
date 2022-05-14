@@ -103,7 +103,7 @@
                             <td>{{json_encode($universidade->web_pages)}}</td>
                             <td>
                                 @if ($universidade->status == 0)
-                                <form method="post" action="{{route('subscription.store')}}">
+                                <form method="post" id="formInscricao" action="{{route('subscription.store')}}">
                                     @csrf
 
 
@@ -136,6 +136,7 @@
         </div>
 
     </section>
+
 
 @endsection
 

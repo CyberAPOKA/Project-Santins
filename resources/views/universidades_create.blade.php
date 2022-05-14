@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('universidades.store')}}" method="POST" id="formUniversidades">
+    <form action="{{route('universidades.store')}}" method="POST">
         @csrf
     <div class="form-group">
         <h1><a style="color: #fe0575; text-decoration: none" href="{{route('universidades.index')}}">Voltar</a></h1>
@@ -35,7 +35,7 @@
                       </div>
 
                       <div class="text-center" style="padding-top: 10px">
-                      <button type="submit" id="btnBlock" class="btn btn-primary">
+                      <button type="submit" class="btn btn-primary">
                             Register
                       </button>
                     </div>
@@ -45,18 +45,5 @@
     </div>
 </form>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#formUniversidades").submit(function (e) {
-
-            $("#btnBlock").attr("disabled", true);
-
-            return true;
-
-        });
-    });
-</script>
 
 @endsection

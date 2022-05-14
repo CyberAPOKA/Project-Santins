@@ -46,7 +46,7 @@ class UniversidadesController extends Controller
 
     public function search(Request $request){
         $user = Auth::user();
-        //dd("teste {$request->search}");
+        $role = Auth::user()->role;
         $filters = $request->all();
 
         $universidades = Universidades::where('alpha_two_code', 'LIKE', "%{$request->search}%")
@@ -58,7 +58,7 @@ class UniversidadesController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
-        return view('universidades', compact('universidades','filters','user'));
+        return view('universidades', compact('universidades','filters','user', 'role'));
 
     }
 
