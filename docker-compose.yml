@@ -3,11 +3,11 @@ version: "3.7"
 services:
     # image project
     app:
-        container_name: santis-laravel-9
+        container_name: santins-laravel-9
         build:
             context: .
             dockerfile: Dockerfile
-        image: santis/laravel9-app
+        image: santins/laravel9-app
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -19,7 +19,7 @@ services:
 
     # nginx
     nginx:
-        container_name: santis-nginx
+        container_name: santins-nginx
         image: nginx:alpine
         restart: unless-stopped
         ports:
@@ -32,7 +32,7 @@ services:
 
     # db mysql
     mysql:
-        container_name: santis-mysql
+        container_name: santins-mysql
         image: mysql:5.7.22
         restart: unless-stopped
         environment:
@@ -49,8 +49,8 @@ services:
 
     # queue
     queue:
-        container_name: santis-queue
-        image: santis/laravel9-app
+        container_name: santins-queue
+        image: santins/laravel9-app
         restart: unless-stopped
         command: "php artisan queue:work"
         volumes:
@@ -63,7 +63,7 @@ services:
 
     # redis
     redis:
-        container_name: santis-redis
+        container_name: santins-redis
         image: redis:latest
         networks:
             - laravel-9
