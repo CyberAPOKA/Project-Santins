@@ -56,5 +56,7 @@ Route::middleware([
 
     Route::post('/universidades/status/{id}', [UniversidadesController::class, 'status'])->name('universidades.status');
 
+    Route::delete('/universidades/delete/{id}', [UniversidadesController::class, 'delete'])->name('universidades.delete');
+
    // Route::get('/admin', [HomeController::class, 'admin'])->name('admin.admin');
 });

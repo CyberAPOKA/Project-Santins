@@ -1,6 +1,18 @@
 @extends('layouts.master')
 @section('content')
 
+@if(session('universidadeStatus'))
+  <script>
+    Swal.fire({
+  position: 'mid-mid',
+  icon: 'success',
+  title: 'Status alterado com Sucesso!',
+  showConfirmButton: false,
+  timer: 2000
+})
+  </script>
+ @endif
+
 @if(session('subscriptionExist'))
   <script>
   Swal.fire({
@@ -123,7 +135,7 @@
                                     @csrf
 
                                                 <select class="form-control" id="status" name="status">
-                                                    <option value="">{{$universidade->status}}</option>
+                                                    <option value="{{$universidade->status}}">{{$universidade->status}}</option>
                                                     @if($universidade->status == 0)
                                                     <option value="{{1}}">{{1}}</option>
                                                         @else

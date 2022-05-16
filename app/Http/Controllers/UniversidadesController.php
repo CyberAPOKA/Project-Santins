@@ -101,9 +101,18 @@ class UniversidadesController extends Controller
         ]);
 
 
-        return redirect()->back();
+        return redirect()->back()->with('universidadeStatus', 'x');
 
     }
 
+
+    public function delete($id){
+
+        $universidades = Universidades::findOrFail($id);
+        $universidades->delete();
+
+        return redirect()->back()->with('deleteUniversidades', 'x');
+
+    }
 
 }

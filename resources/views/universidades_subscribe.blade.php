@@ -6,7 +6,7 @@
     Swal.fire({
   position: 'mid-mid',
   icon: 'success',
-  title: 'Usuário excluido com sucesso!',
+  title: 'Inscrição removida com Sucesso!',
   showConfirmButton: false,
   timer: 1500
 })
