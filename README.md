@@ -20,6 +20,13 @@
 <h4>Messages</h4>
 <p>I used the SweetAlert library to inform the user when he makes a request, for example, success messages, errors and information.</p>
 
+<h4>Docker</h4>
+<p>I used docker, the installation is easier and avoids version conflicts, because there is no need to have php and composer installed on the machine, among other advantages.</p>
+
+<h4>Host</h4>
+<p>I hosted the project on the heroku website, anyone can access the project at any time and do any operation from a standard user.</p>
+
+
 <h4>User</h4>
 <p>I created a rule where the user cannot apply to the same university more than once.</p>
 
