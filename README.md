@@ -31,4 +31,19 @@
 <p>I created a rule where the user cannot apply to the same university more than once.</p>
 
 <h2>Now you know all the project information, let's run it on your machine?</h2>
+<p>In this project it will not be necessary to configure the .env, because I left it with the necessary settings already.</p>
+<p>Open docker and run the commands below</p>
+<p>git clone https://github.com/CyberAPOKA/Project-Santins.git</p>
+<p>Open the project folder in your browser</p>
+<p>docker-compose up --build -d</p>
+<p>docker compose exec app bash</p>
+<p>composer install</p>
+<p>php artisan migrate --seed</p>
+<p>Open the server at http://127.0.0.1:8987/</p>
+<h2>API</h2>
+<p>The api routes are consumed in postman at the following addresses:</p>
+<h3>Local</h3>
+<p>http://127.0.0.1:8987/api/json for universities and http://127.0.0.1:8987/api/login for users</p>
+<h3>Production</h3>
+<p>https://salty-falls-87671.herokuapp.com/api/json for universities and https://salty-falls-87671.herokuapp.com/api/login for users</p>
 
