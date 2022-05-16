@@ -130,10 +130,10 @@
 
                                 </form>
                                 @elseif ($user->role == 1)
-                                <form method="post" action="{{route('universidades.delete', $universidade->id )}}">
+                                <form method="POST" action="{{route('universidades.delete', $universidade->id )}}" id="deleteUniversidade">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="subscribe-button">
+                                    <button type="submit" class="subscribe-button delete" onclick="deleteUniversidade(this)">
                                             DELETAR
                                     </button>
 
@@ -160,6 +160,30 @@
         </div>
 
     </section>
+
+
+<script>
+    function deleteUniversidade(){
+   event.preventDefault();
+   var form = event.target.form;
+        Swal.fire({
+ title: 'Você deseja realmente excluir esta universidade?',
+ text: "Após a exclusão, os dados não poderão ser recuperados!",
+ icon: 'warning',
+ showCancelButton: true,
+ confirmButtonColor: '#d33',
+ cancelButtonColor: '#3085d6',
+ confirmButtonText: 'Sim, Excluir!',
+ cancelButtonText: 'Cancelar',
+}).then((result) => {
+ if (result.isConfirmed) {
+    form.submit();
+ }
+});
+
+    }
+</script>
+
 
 
 @endsection
