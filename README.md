@@ -1,4 +1,4 @@
- <h1> Project-Santis </h1>
+ <h1> Project-Santins </h1>
 <h4> This project was developed for a selection process of the company Santins! </h4>
 <p>I made a restricted access system with two types of user, standard user and super admin user.</p>
 <p> The project consists of the user creating an account, logging in, registering at universities, viewing them and also removing their registration, the standard user can also suggest a university, universities created by standard users will be under review, and only the super admin user can change its status, super admin user can also delete universities. </p>

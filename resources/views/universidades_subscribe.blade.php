@@ -6,7 +6,7 @@
     Swal.fire({
   position: 'mid-mid',
   icon: 'success',
-  title: 'Inscrição removida com Sucesso!',
+  title: 'Subscription Successfully Removed!',
   showConfirmButton: false,
   timer: 1500
 })
@@ -17,7 +17,6 @@
 
     <div class="col-md-12">
         <div class="">
-            <h1><a style="color: #fe0575; text-decoration: none" href="{{route('universidades.index')}}">Voltar</a></h1>
             <table class="table table-striped">
                 <thead>
                   <tr>
@@ -34,7 +33,7 @@
                             <form action="{{route('subscription.remove', $sub->id)}}" method="POST" id="deleteSubscription">
                                 @method('DELETE')
                                 @csrf
-                                    <button type="submit" class="subscribe-button delete" onclick="deleteSubscription(this)">Remover</button>
+                                    <button type="submit" class="subscribe-button delete" onclick="deleteSubscription(this)">Remove</button>
                                </form>
                         </td>
                     </tr>
@@ -52,14 +51,14 @@
    event.preventDefault();
    var form = event.target.form;
         Swal.fire({
- title: 'Você deseja realmente excluir este usuário?',
- text: "Após a exclusão, os dados não poderão ser recuperados!",
+ title: 'Remove subscription?',
+ text: "You can re-enroll whenever you want.",
  icon: 'warning',
  showCancelButton: true,
  confirmButtonColor: '#d33',
  cancelButtonColor: '#3085d6',
- confirmButtonText: 'Sim, Excluir!',
- cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Yes, Remove!',
+ cancelButtonText: 'Cancel',
 }).then((result) => {
  if (result.isConfirmed) {
     form.submit();

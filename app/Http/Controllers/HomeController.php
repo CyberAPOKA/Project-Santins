@@ -10,12 +10,8 @@ class HomeController extends Controller
 {
 
     public function index(){
-
-        $user = Auth::user();
-
-        $universidades = Universidades::latest()->orderBy('id', 'desc')->paginate(10);
-
-        return view('welcome', compact('universidades', 'user'));
+        
+        return redirect('universidades');
     }
 
     public function role(){

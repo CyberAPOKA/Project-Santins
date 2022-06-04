@@ -1,3 +1,11 @@
+<div class="col-md-8">
+  <form action="{{ route('universidades.search') }}" method="POST" class="search">
+      @csrf
+      <input type="text" id="search" name="search" placeholder="Search">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+  </form>
+</div>
+{{-- 
 <header id="header">
     <div class="container">
         <nav class="navbar navbar-expand-lg">
@@ -28,3 +36,4 @@
           </nav>
     </div>
 </header>
+--}}

@@ -35,10 +35,10 @@ class UniversidadeRequest extends FormRequest
 
     public function messages(){
         return [
-            'required' => 'Este campo é obrigatório.',
-            'alpha_two_code.max' => 'Insira no máximo dois caracteres.',
-            'alpha_two_code.min' => 'Insira no mínimo dois caracteres.',
-            'web_pages.url' => 'Insira uma URL válida.'
+            'required' => 'This field is required.',
+            'alpha_two_code.max' => 'Please enter a maximum of two characters.',
+            'alpha_two_code.min' => 'Please enter a least of two characters.',
+            'web_pages.url' => 'Please enter a valid URL.'
         ];
     }
 }

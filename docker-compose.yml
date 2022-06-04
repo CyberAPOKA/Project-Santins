@@ -7,7 +7,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: santins/laravel9-app
+        image: christiansteffens/laravel9-app
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -50,7 +50,7 @@ services:
     # queue
     queue:
         container_name: santins-queue
-        image: santins/laravel9-app
+        image: christiansteffens/laravel9-app
         restart: unless-stopped
         command: "php artisan queue:work"
         volumes:

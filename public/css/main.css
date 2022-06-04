@@ -1,65 +1,360 @@
-.body-welcome{
-    font-family: "Overpass Mono",monospace;
-}
-#background{
-    background-color: #fe0b74;
-    background-image: linear-gradient(#fe0b74, #fe0575);
-}
-.a-button{
-    color: white;
-    text-decoration: none;
-}
-.a-button:hover{
-    color: white;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #8000b3;
+  --first-color-light: #AFA5D9;
+  --white-color: #F7F6FB;
+  --body-font: 'Nunito', sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100
 }
 
-.subscribe-button{
-    background-color: #cc0000;
-    color: white;
-    border: #cc0000;
-    border-radius: 3px 3px 3px 3px;
+*,
+::before,
+::after {
+  box-sizing: border-box
 }
 
-#header{
-    background-color: #ff0071;
+body {
+  position: relative;
+  margin: var(--header-height) 0 0 0;
+  padding: 0 1rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: .5s
 }
-.s-h{
-    color: white;
+
+a {
+  text-decoration: none
 }
-.a-h{
-    color: white ;
+
+.header {
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background-color: var(--white-color);
+  z-index: var(--z-fixed);
+  transition: .5s
 }
-.logo{
-    font-size: 25px;
+
+.header_toggle {
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer
 }
-.uni{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+.header_img {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden
 }
-h1{
-    color: white;
+
+.header_img img {
+  width: 40px
 }
-h1 a{
-    color: #dfd000;
+
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: -30%;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--first-color);
+  padding: .5rem 1rem 0 0;
+  transition: .5s;
+  z-index: var(--z-fixed)
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden
+}
+
+.nav_logo,
+.nav_link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: .5rem 0 .5rem 1.5rem
+}
+
+.nav_logo {
+  margin-bottom: 2rem
+}
+
+.nav_logo-icon {
+  font-size: 1.25rem;
+  color: var(--white-color)
+}
+
+.nav_logo-name {
+  color: var(--white-color);
+  font-weight: 700
+}
+
+.nav_link {
+  position: relative;
+  color: var(--first-color-light);
+  margin-bottom: 1.5rem;
+  transition: .3s
+}
+
+.nav_link:hover {
+  color: var(--white-color)
+}
+
+.nav_icon {
+  font-size: 1.25rem
+}
+
+.show {
+  left: 0
+}
+
+.body-pd {
+  padding-left: calc(var(--nav-width) + 1rem)
+}
+
+.active {
+  color: var(--white-color)
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 32px;
+  background-color: var(--white-color)
+}
+
+.height-100 {
+  height: 100vh
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    margin: calc(var(--header-height) + 1rem) 0 0 0;
+    padding-left: calc(var(--nav-width) + 2rem)
+  }
+
+  .header {
+    height: calc(var(--header-height) + 1rem);
+    padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
+  }
+
+  .header_img {
+    width: 40px;
+    height: 40px
+  }
+
+  .header_img img {
+    width: 45px
+  }
+
+  .l-navbar {
+    left: 0;
+    padding: 1rem 1rem 0 0
+  }
+
+  .show {
+    width: calc(var(--nav-width) + 156px)
+  }
+
+  .body-pd {
+    padding-left: calc(var(--nav-width) + 188px)
+  }
+}
+
+.body-welcome {
+  font-family: "Overpass Mono", monospace;
 }
 
 #background {
-    background-color: #fe0b74;
-    height:100vh;
-  }
-  .s-h:hover {
-    color: white !important;
-  }
-  a:hover {
-    color: white;
-  }
+  background-color: #fe0b74;
+  background-image: linear-gradient(#fe0b74, #fe0575);
+}
 
-  span a{
-    color: #dfd000;
-  }
+.a-button {
+  color: white;
+  text-decoration: none;
+}
 
-  .help-block{
-      color: red;
-  }
+.a-button:hover {
+  color: white;
+}
+
+.subscribe-button {
+  background-color: #8000b3;
+  color: white;
+  border: #8000b3;
+  border-radius: 3px 3px 3px 3px;
+}
+
+#header {
+  background-color: #8000b3;
+}
+
+.s-h {
+  color: white;
+}
+
+.a-h {
+  color: white;
+}
+
+.logo {
+  font-size: 25px;
+}
+
+.uni {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  color: white;
+}
+
+h1 a {
+  color: #dfd000;
+}
+
+#background {
+  background-color: #fe0b74;
+  height: 100vh;
+}
+
+.s-h:hover {
+  color: white !important;
+}
+
+a:hover {
+  color: white;
+}
+
+span a {
+  color: #dfd000;
+}
+
+.help-block {
+  color: red;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+  border-radius: 10px 0px 0px 10px ;
+}
+
+/* Style the submit button */
+form.search button {
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  /* Prevent double borders */
+  cursor: pointer;
+  border-radius: 0px 10px 10px 0px !important;
+}
+
+form.search button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.page-link{
+  color: #8000b3 !important;
+}
+.page-item.active .page-link{
+  color: #fff !important;
+  background-color: #8000b3 !important;
+  border-color: #8000b3 !important;
+}
+
+.showing{
+  font-size: 1.5em;
+  color: #8000b3;
+}
+
+.form-label-universidades{
+  font-size: 1.5em;
+  color: #8000b3;
+}
+
+.form-button-universidades{
+  font-size: 1.5em;
+  color: #fff;
+  background-color: #8000b3;
+  width: 10em;
+  height: 2em;
+  border: #f1f1f1;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px 10px 10px 10px;
+  
+}
+.dropdown-content:hover {background-color: red;}
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-button-logout{
+  background: 0%;
+  border:0ch;
+
+  padding: 1em 3em 1em 3em;
+
+}
+.approve{
+  text-align: center;
+}
