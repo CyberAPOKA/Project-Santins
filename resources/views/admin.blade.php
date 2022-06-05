@@ -68,14 +68,28 @@
                         <td>{{ $universidade->id }}</td>
                         <td>{{ $universidade->alpha_two_code }}</td>
                         <td>{{ $universidade->country }}</td>
-                        <td>{{ json_encode($universidade->domains) }}</td>
-                        <td>{{ $universidade->name }}</td>
-                        <td>{{ json_encode($universidade->web_pages) }}</td>
+                        <td>
+                            @foreach($universidade->domains as $domain)
+                                {{$domain}}
+                            @endforeach
+                            </td>
+                            <td>{{ $universidade->name }}</td>
+                            <td>
+                                @foreach($universidade->web_pages as $web_page)
+                                    {{$web_page}}
+                                @endforeach
+                                </td>
                         <td>
                             <form method="post" action="{{ route('universidades.status', $universidade->id) }}">
                                 @csrf
 
-                                <select class="form-control" id="status" name="status">
+                                @if( $universidade->status == 0)
+                                <select class="form-control" id="status" name="status"
+                                 style="background-color: rgb(87, 168, 32); color: white">
+                                @else 
+                                 <select class="form-control select-trade-color" id="status" name="status"
+                                 style="background-color: red; color: white">
+                                @endif
                                     <option value="{{ $universidade->status }}" class="approve">
                                       @if( $universidade->status == 0)
                                       <div class="approve">
@@ -93,8 +107,8 @@
                                     @endif
                                 </select>
 
-                                <button type="submit" class="form-control" name="subscribe">
-                                    Confirmar
+                                <button type="submit" class="form-control purple" name="subscribe">
+                                    Confirm
                                 </button>
 
                             </form>

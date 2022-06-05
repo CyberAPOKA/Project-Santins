@@ -270,7 +270,7 @@ form.search input[type=text] {
   float: left;
   width: 80%;
   background: #f1f1f1;
-  border-radius: 10px 0px 0px 10px ;
+  border-radius: 10px 0px 0px 10px;
 }
 
 /* Style the submit button */
@@ -298,26 +298,28 @@ form.search::after {
   clear: both;
   display: table;
 }
-.page-link{
+
+.page-link {
   color: #8000b3 !important;
 }
-.page-item.active .page-link{
+
+.page-item.active .page-link {
   color: #fff !important;
   background-color: #8000b3 !important;
   border-color: #8000b3 !important;
 }
 
-.showing{
+.showing {
   font-size: 1.5em;
   color: #8000b3;
 }
 
-.form-label-universidades{
+.form-label-universidades {
   font-size: 1.5em;
   color: #8000b3;
 }
 
-.form-button-universidades{
+.form-button-universidades {
   font-size: 1.5em;
   color: #fff;
   background-color: #8000b3;
@@ -338,23 +340,39 @@ form.search::after {
   right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   align-items: center;
   text-align: center;
   border-radius: 10px 10px 10px 10px;
-  
-}
-.dropdown-content:hover {background-color: red;}
-.dropdown:hover .dropdown-content {display: block;}
 
-.dropdown-button-logout{
+}
+
+.dropdown-content:hover {
+  background-color: red;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-button-logout {
   background: 0%;
-  border:0ch;
+  border: 0ch;
 
   padding: 1em 3em 1em 3em;
 
 }
-.approve{
+
+.approve {
   text-align: center;
+}
+
+.select-trade-color {
+  background-color: green;
+}
+
+.purple {
+  color: white;
+  background-color: #8000b3;
 }

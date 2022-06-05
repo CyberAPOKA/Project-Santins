@@ -78,9 +78,17 @@
                         @endif
                         <td>{{ $universidade->alpha_two_code }}</td>
                         <td>{{ $universidade->country }}</td>
-                        <td>{{ json_encode($universidade->domains) }}</td>
+                        <td>
+                        @foreach($universidade->domains as $domain)
+                            {{$domain}}
+                        @endforeach
+                        </td>
                         <td>{{ $universidade->name }}</td>
-                        <td>{{ json_encode($universidade->web_pages) }}</td>
+                        <td>
+                            @foreach($universidade->web_pages as $web_page)
+                                {{$web_page}}
+                            @endforeach
+                            </td>
                         <td>
                             @if ($universidade->status == 0 && $user->role == 0)
                                 <form method="post" action="{{ route('subscription.store') }}">
