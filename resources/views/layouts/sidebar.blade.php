@@ -45,7 +45,7 @@
                     @if ($user->role == 1)
                     <a href="{{ route('home.role') }}"
                     class="nav_link {{ request()->is('home') ? 'active' : '' }}">
-                    <i class='bx bx-grid-alt nav_icon'></i>
+                    <i class='bx bx-layer nav_icon'></i>
                     <span class="nav_name">ADMIN</span> </a>
                     @endif
                     <a href="{{ route('universidades.index') }}"
@@ -55,7 +55,7 @@
 
                     <a href="{{ route('universidades.create') }}"
                         class="nav_link {{ request()->is('universidades/create') ? 'active' : '' }}">
-                        <i class='bx bx-user nav_icon'></i>
+                        <i class='bx bx-layer nav_icon'></i>
                         <span class="nav_name2">Create university</span> </a>
 
                     <a href="{{ route('universidades.subscribe') }}"

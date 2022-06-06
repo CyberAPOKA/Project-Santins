@@ -376,3 +376,7 @@ form.search::after {
   color: white;
   background-color: #8000b3;
 }
+
+.web_page:hover{
+    color: #8000b3;
+}

@@ -55,7 +55,7 @@
             <thead>
                 <tr>
                     @if ($user->role == 1)
-                    <th scope="col">ID</th>
+                        <th scope="col">ID</th>
                     @endif
                     <th scope="col">Alpha-2 code</th>
                     <th scope="col">Country</th>
@@ -74,21 +74,22 @@
                 @foreach ($universidades as $universidade)
                     <tr>
                         @if ($user->role == 1)
-                        <td>{{ $universidade->id }}</td>
+                            <td>{{ $universidade->id }}</td>
                         @endif
                         <td>{{ $universidade->alpha_two_code }}</td>
                         <td>{{ $universidade->country }}</td>
                         <td>
-                        @foreach($universidade->domains as $domain)
-                            {{$domain}}
-                        @endforeach
+                         
+                            @foreach ((array)$universidade->domains as $domain)
+                                {{ $domain }}
+                            @endforeach
                         </td>
                         <td>{{ $universidade->name }}</td>
                         <td>
-                            @foreach($universidade->web_pages as $web_page)
-                                {{$web_page}}
+                            @foreach ((array)$universidade->web_pages as $web_page)
+                                <a href="{{ $web_page }}" class="web_page" target="_blank">{{ $web_page }}</a>
                             @endforeach
-                            </td>
+                        </td>
                         <td>
                             @if ($universidade->status == 0 && $user->role == 0)
                                 <form method="post" action="{{ route('subscription.store') }}">
@@ -107,7 +108,7 @@
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="subscribe-button delete" onclick="deleteUniversidade(this)">
-                                        DELETAR
+                                        DELETE
                                     </button>
 
                                 </form>

@@ -69,42 +69,44 @@
                         <td>{{ $universidade->alpha_two_code }}</td>
                         <td>{{ $universidade->country }}</td>
                         <td>
-                            @foreach($universidade->domains as $domain)
-                                {{$domain}}
+                            @foreach ((array)$universidade->domains as $domain)
+                                {{ $domain }}
                             @endforeach
-                            </td>
-                            <td>{{ $universidade->name }}</td>
-                            <td>
-                                @foreach($universidade->web_pages as $web_page)
-                                    {{$web_page}}
-                                @endforeach
-                                </td>
+                        </td>
+                        <td>{{ $universidade->name }}</td>
+                        <td>
+                            @foreach ((array)$universidade->web_pages as $web_page)
+                                <a href="{{ $web_page }}" class="web_page" target="_blank">{{ $web_page }}</a>
+                            @endforeach
+                        </td>
                         <td>
                             <form method="post" action="{{ route('universidades.status', $universidade->id) }}">
                                 @csrf
 
-                                @if( $universidade->status == 0)
-                                <select class="form-control" id="status" name="status"
-                                 style="background-color: rgb(87, 168, 32); color: white">
-                                @else 
-                                 <select class="form-control select-trade-color" id="status" name="status"
-                                 style="background-color: red; color: white">
-                                @endif
-                                    <option value="{{ $universidade->status }}" class="approve">
-                                      @if( $universidade->status == 0)
-                                      <div class="approve">
-                                        Approved @else
-                                      </div>
-                                      <div class="reprove">
-                                        Reproved 
-                                      </div>
-                                      @endif</option>
-
-                                    @if ($universidade->status == 0)
-                                        <option value="{{ 1 }}"  class="approve">Reprove</option>
+                                @if ($universidade->status == 0)
+                                    <select class="form-control" id="status" name="status"
+                                        style="background-color: rgb(87, 168, 32); color: white">
                                     @else
-                                        <option value="{{ 0 }}"  class="approve">Approve</option>
+                                        <select class="form-control select-trade-color" id="status" name="status"
+                                            style="background-color: red; color: white">
+                                @endif
+                                <option value="{{ $universidade->status }}" class="approve">
+                                    @if ($universidade->status == 0)
+                                        <div class="approve">
+                                            Approved
+                                        @else
+                                        </div>
+                                        <div class="reprove">
+                                            Not approved
+                                        </div>
                                     @endif
+                                </option>
+
+                                @if ($universidade->status == 0)
+                                    <option value="{{ 1 }}" class="approve">Reprove</option>
+                                @else
+                                    <option value="{{ 0 }}" class="approve">Approve</option>
+                                @endif
                                 </select>
 
                                 <button type="submit" class="form-control purple" name="subscribe">
