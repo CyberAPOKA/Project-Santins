@@ -1,14 +1,13 @@
 @extends('layouts.master')
 @section('content')
-
-    @if (session('deleteEnrollment'))
+    @if (session('subscriptionDelete'))
         <script>
             Swal.fire({
                 position: 'mid-mid',
                 icon: 'success',
-                title: 'Enrollment successfully deleted!',
+                title: 'Enrollment Successfully Removed!',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 1500
             })
         </script>
     @endif
@@ -92,7 +91,7 @@
                 cancelButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('universidades.searchEnrollments')}}";
+                    window.location.href = "{{ route('universidades.searchEnrollments') }}";
                 }
             });
 

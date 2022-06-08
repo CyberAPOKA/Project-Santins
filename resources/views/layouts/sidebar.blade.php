@@ -26,7 +26,7 @@
                 <form action="{{ route('universidades.searchEnrollments') }}" method="POST" class="search">
                     @csrf
                     <input type="text" id="search" name="search" placeholder="Search">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>a</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </form>
             </div>
         @endif

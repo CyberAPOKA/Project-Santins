@@ -88,7 +88,9 @@
                         <td>{{ $universidade->name }}</td>
                         <td>
                             @foreach ((array) $universidade->web_pages as $web_page)
-                                <a href="{{ $web_page }}" class="web_page" target="_blank">{{ $web_page }}</a>
+                                <a href="{{ $web_page }}" class="web_page"
+                                    onclick="followLink(event)">
+                                    {{ $web_page }}</a>
                             @endforeach
                         </td>
                         <td>
@@ -116,7 +118,7 @@
                                 </option>
 
                                 @if ($universidade->status == 0)
-                                    <option value="{{ 1 }}" class="repprove">Reprove </option>
+                                    <option value="{{ 1 }}" class="repprove">Reprove</option>
                                 @else
                                     <option value="{{ 0 }}" class="approve">Approve</option>
                                 @endif
@@ -185,6 +187,26 @@
 
         }
     </script>
+
+<script>
+    function followLink(e) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'You clicked on a link and you will be redirected!',
+            text: "Are you sure you want to continue?",
+            icon: 'warning',
+            iconColor: '#ff0000',
+            showCancelButton: true,
+            confirmButtonColor: '#ff0000',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, go'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = e.target.href,'_blank';
+            }
+        })
+    }
+</script>
 
     <script>
         function deleteUniversidade() {
