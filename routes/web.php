@@ -34,31 +34,37 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-
-    Route::get('/universidades', [UniversidadesController::class, 'index'])->name('universidades.index');
-
-    Route::any('/universidades/search', [UniversidadesController::class, 'search'])->name('universidades.search');
 
     Route::post('/subscription', [SubscriptionsController::class, 'store'])->name('subscription.store');
 
     Route::get('/universidades/create', [UniversidadesController::class, 'create'])->name('universidades.create');
 
-    //Route::get('/universidades/create', [UniversidadesController::class, 'create'])->name('universidades.create');
-
     Route::post('/universidades/store', [UniversidadesController::class, 'store'])->name('universidades.store');
 
-    Route::get('/universidades/subscribe', [UniversidadesController::class, 'subscribe'])->name('universidades.subscribe');
-
     Route::delete('/subscription/remove/{id}', [SubscriptionsController::class, 'remove'])->name('subscription.remove');
+
+    Route::delete('universidades/subscription/remove/{id}', [UniversidadesController::class, 'remove'])->name('subscription.remove');
 
     Route::post('/universidades/status/{id}', [UniversidadesController::class, 'status'])->name('universidades.status');
 
     Route::delete('/universidades/delete/{id}', [UniversidadesController::class, 'delete'])->name('universidades.delete');
 
+});
+
+Route::middleware(['user'])->group(function () {
+
+    Route::get('/universidades', [UniversidadesController::class, 'index'])->name('universidades.index');
+
+    Route::any('/universidades/search', [UniversidadesController::class, 'search'])->name('universidades.search');
+
+    Route::get('/universidades/subscribe', [UniversidadesController::class, 'subscribe'])->name('universidades.subscribe');
+});
+
+Route::middleware(['admin'])->group(function () {
+
     Route::get('/universidades/subscriptions', [UniversidadesController::class, 'subscriptions'])->name('universidades.subscriptions');
-   // Route::get('/admin', [HomeController::class, 'admin'])->name('admin.admin');
+
+    Route::any('/universidades/subscriptions/search', [UniversidadesController::class, 'searchEnrollments'])->name('universidades.searchEnrollments');
+
+    Route::any('/universidades/admin/search', [UniversidadesController::class, 'searchAdmin'])->name('universidades.searchAdmin');
 });

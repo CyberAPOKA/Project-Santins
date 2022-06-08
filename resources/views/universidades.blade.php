@@ -157,7 +157,7 @@
                 cancelButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location = "search";
+                    window.location.href = "{{ route('universidades.search')}}";
                 }
             });
 

@@ -1,18 +1,16 @@
 @extends('layouts.master')
 @section('content')
-
-    
-@if (session('deleteUniversidades'))
-<script>
-    Swal.fire({
-        position: 'mid-mid',
-        icon: 'success',
-        title: 'University successfully deleted!',
-        showConfirmButton: false,
-        timer: 2000
-    })
-</script>
-@endif
+    @if (session('deleteUniversidades'))
+        <script>
+            Swal.fire({
+                position: 'mid-mid',
+                icon: 'success',
+                title: 'University successfully deleted!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
     @if (session('universidadeStatus'))
         <script>
             Swal.fire({
@@ -83,34 +81,34 @@
                         <td>{{ $universidade->alpha_two_code }}</td>
                         <td>{{ $universidade->country }}</td>
                         <td>
-                            @foreach ((array)$universidade->domains as $domain)
+                            @foreach ((array) $universidade->domains as $domain)
                                 {{ $domain }}
                             @endforeach
                         </td>
                         <td>{{ $universidade->name }}</td>
                         <td>
-                            @foreach ((array)$universidade->web_pages as $web_page)
+                            @foreach ((array) $universidade->web_pages as $web_page)
                                 <a href="{{ $web_page }}" class="web_page" target="_blank">{{ $web_page }}</a>
                             @endforeach
                         </td>
                         <td>
-                            <form method="post" action="{{ route('universidades.status', $universidade->id) }}"
-                                id="form" name="form">
+                            <form method="post" action="{{ route('universidades.status', $universidade->id) }}" id="form"
+                                name="form">
                                 @csrf
 
                                 @if ($universidade->status == 0)
-                                    <select class="form-control biri" id="status" name="status" onchange="this.form.submit()" 
+                                    <select class="form-control biri" id="status" name="status" onchange="this.form.submit()"
                                         style="background-color: rgb(87, 168, 32); color: white">
                                     @else
-                                        <select class="form-control biri" id="status" name="status" onchange="this.form.submit()"
-                                        style="background-color: red; color: white">
+                                        <select class="form-control biri" id="status" name="status"
+                                            onchange="this.form.submit()" style="background-color: red; color: white">
                                 @endif
                                 <option value="{{ $universidade->status }}" class="approve">
                                     @if ($universidade->status == 0)
                                         <div class="">
                                             Approved <i class="fa-solid fa-chevron-down"></i>
                                         </div>
-                                        @else
+                                    @else
                                         <div>
                                             Not approved <i class="fa-solid fa-chevron-down"></i>
                                         </div>
@@ -146,15 +144,49 @@
         @else
             {{ $universidades->links() }}
         @endif
-        <div class="showing">
-            Showing {{ $universidades->firstItem() }} to {{ $universidades->lastItem() }}
-            of total {{ $universidades->total() }} entries
-        </div>
-        </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="showing">
+                    Showing {{ $universidades->firstItem() }} to {{ $universidades->lastItem() }}
+                    of total {{ $universidades->total() }} entries
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <button type="button" class="reset-search" onclick="resetSearch(this)">
+                        <a href="{{ route('universidades.searchAdmin') }}">RESET SEARCH</a>
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
     </section>
- 
-      <script>
+
+    <script>
+        function resetSearch() {
+            event.preventDefault();
+            Swal.fire({
+                title: 'The search filter will be lost!',
+                text: "Do you wish to continue?",
+                icon: 'warning',
+                iconColor: '#ff0000',
+                showCancelButton: true,
+                confirmButtonColor: '#ff0000',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, Reset!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('universidades.searchAdmin')}}";
+                }
+            });
+
+        }
+    </script>
+
+    <script>
         function deleteUniversidade() {
             event.preventDefault();
             var form = event.target.form;
@@ -176,5 +208,4 @@
 
         }
     </script>
-    
 @endsection
