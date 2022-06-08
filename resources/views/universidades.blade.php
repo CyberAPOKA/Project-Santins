@@ -146,13 +146,14 @@
         function resetSearch() {
             event.preventDefault();
             Swal.fire({
-                title: 'Do you really want to delete this university?',
-                text: "After deletion, data cannot be recovered!",
+                title: 'The search filter will be lost!',
+                text: "Do you wish to continue?",
                 icon: 'warning',
+                iconColor: '#ff0000',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#ff0000',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, Delete!',
+                confirmButtonText: 'Yes, Reset!',
                 cancelButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -172,10 +173,10 @@
                 title: 'You clicked on a link and you will be redirected!',
                 text: "Are you sure you want to continue?",
                 icon: 'warning',
-                iconColor: '#red',
+                iconColor: '#ff0000',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#ff0000',
+                cancelButtonColor: '#3085d6',
                 confirmButtonText: 'Yes, go'
             }).then((result) => {
                 if (result.isConfirmed) {

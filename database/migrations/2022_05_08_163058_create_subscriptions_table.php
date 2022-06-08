@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('universidade_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('universidade_id');
+            $table->foreign('universidade_id')->references('id')->on('universidades')->onDelete('cascade');
             $table->string('universidade_name')->nullable();
             $table->timestamps();
         });

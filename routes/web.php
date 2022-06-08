@@ -38,6 +38,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+
     Route::get('/universidades', [UniversidadesController::class, 'index'])->name('universidades.index');
 
     Route::any('/universidades/search', [UniversidadesController::class, 'search'])->name('universidades.search');
@@ -58,5 +59,6 @@ Route::middleware([
 
     Route::delete('/universidades/delete/{id}', [UniversidadesController::class, 'delete'])->name('universidades.delete');
 
+    Route::get('/universidades/subscriptions', [UniversidadesController::class, 'subscriptions'])->name('universidades.subscriptions');
    // Route::get('/admin', [HomeController::class, 'admin'])->name('admin.admin');
 });

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <div class="container">
-        <form action="{{ route('universidades.store') }}" method="POST" id="formInscricao" class="form">
+        <form action="{{ route('universidades.store') }}" method="POST" id="myForm" class="form">
             @csrf
             <div class="form-group">
                 <div class="col-md-12">
@@ -34,49 +34,35 @@
                         </div>
 
                         <p style="padding-top: 0.5em"><span style="color: red">Warning:</span> After creating a university,
-                          it will be under review by the team for approval.
+                            it will be under review by the team for approval.
                         </p>
 
                         <div class="text-center">
-                          <button type="submit" id="btnsubmit" class="form-button-universidades submitBtn">Submit</button>
+                            <button type="submit" id="btnSubmit" class="form-button-universidades">
+                                Submit
+                            </button>
                         </div>
 
-                       
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+         $("#btnSubmit").dblclick(function(event)
+          {  
+               event.preventDefault();
+               var el = $(this);
+               el.prop('disabled', true);
+               setTimeout(function(){el.prop('disabled', false); }, 3000);
+         });
+    });
     </script>
-
-<script>
-    jQuery.fn.preventDoubleSubmit = function() {
-              jQuery(this).submit(function() {
-                if (this.beenSubmitted)
-                  return false;
-                else
-                  this.beenSubmitted = true;
-              });
-            };
-</script>
-
-<script>
-   $('form').submit(function() {
-                if(typeof jQuery.data(this, "disabledOnSubmit") == 'undefined') {
-                    jQuery.data(this, "disabledOnSubmit", { submited: true });
-                    $('input[type=submit], input[type=button]', this).each(function() {
-                        $(this).attr("disabled", "disabled");
-                  });
-                  //$('input[type=submit], input[type=button]', this).attr("disabled", "disabled");
-                  return true;
-            }
-            else
-            {
-                return false;
-            }
-});
-</script>
 
 @endsection

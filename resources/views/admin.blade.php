@@ -160,10 +160,11 @@
             var form = event.target.form;
             Swal.fire({
                 title: 'Do you really want to delete this university?',
-                text: "After deletion, data cannot be recovered!",
+                text: "After deletion, data cannot be recovered and all enrollments will be lost!",
                 icon: 'warning',
+                iconColor: '#ff0000',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#ff0000',
                 cancelButtonColor: '#3085d6',
                 confirmButtonText: 'Yes, Delete!',
                 cancelButtonText: 'Cancel',

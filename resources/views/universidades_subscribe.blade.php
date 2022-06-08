@@ -54,6 +54,7 @@
  title: 'Remove subscription?',
  text: "You can re-enroll whenever you want.",
  icon: 'warning',
+ iconColor: '#ff0000',
  showCancelButton: true,
  confirmButtonColor: '#d33',
  cancelButtonColor: '#3085d6',

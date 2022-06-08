@@ -74,6 +74,7 @@ class UniversidadesController extends Controller
 
     public function store(UniversidadeRequest $request){
 
+        $user = Auth::user();
         $universidades = new Universidades();
 
         $universidades->alpha_two_code = $request->input('alpha_two_code');
@@ -81,10 +82,13 @@ class UniversidadesController extends Controller
         $universidades->domains = $request->input('domains');
         $universidades->name = $request->input('name');
         $universidades->web_pages = $request->input('web_pages');
-        $universidades->status = 1;
+        if($user->role == 0){
+            $universidades->status = 1;
+        }else{
+            $universidades->status = 0; 
+        }   
         $universidades->save();
-
-        return redirect()->route('universidades.index')->with('success', 'zzz');
+        return redirect()->route('home.index')->with('success', 'zzz');
     }
 
     public function subscribe(Request $request){
@@ -117,6 +121,10 @@ class UniversidadesController extends Controller
 
         return redirect()->back()->with('deleteUniversidades', 'x');
 
+    }
+
+    public function subscriptions(){
+        return view('subscriptions');
     }
 
 }

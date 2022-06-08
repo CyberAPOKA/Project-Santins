@@ -23,7 +23,11 @@
 
         <div class="dropdown" style="float:right;">
             <button class="dropbtn" style="display: block; visibility:hidden"></button>
-            <div class="header_img"> <img src="{{ asset('assets/imgs/avatar-user.jpg') }}" alt=""> </div>
+            @if ($user->role == 0)
+            <div class="header_img"> <img src="{{ asset('assets/imgs/avatar-user.jpg') }}" alt=""></div>
+            @else
+            <div class="header_img"> <img src="{{ asset('assets/imgs/avatar-admin.jpg') }}" alt=""></div>
+            @endif
             <div class="dropdown-content">
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
@@ -51,7 +55,7 @@
 
                     @if ($user->role == 0)
                     <a href="{{ route('universidades.index') }}"
-                        class="nav_link {{ request()->is('universidades') ? 'active' : '' }}">
+                        class="nav_link {{ request()->is('universidades') || request()->is('home') ? 'active' : '' }}">
                         <i class="fa-solid fa-building-columns nav_icon"></i>
                         <span class="nav_name">Universities</span> </a>
                         @endif
@@ -60,12 +64,18 @@
                         
                         <i class="fa-solid fa-plus nav_icon"></i>
                         <span class="nav_name2">Create university</span> </a>
-
+                        @if ($user->role == 0)
                     <a href="{{ route('universidades.subscribe') }}"
                         class="nav_link {{ request()->is('universidades/subscribe') ? 'active' : '' }}">
                         <i class='bx bx-message-square-detail nav_icon'></i>
                         <span class="nav_name3">My subscriptions</span> </a>
-
+                        @endif
+                        @if ($user->role == 1)
+                    <a href="{{ route('universidades.subscriptions') }}"
+                        class="nav_link {{ request()->is('universidades/subscriptions') ? 'active' : '' }}">
+                        <i class='bx bx-message-square-detail nav_icon'></i>
+                        <span class="nav_name3">All subscriptions</span> </a>
+                        @endif
                 </div>
             </div>
 
