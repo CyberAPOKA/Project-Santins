@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 Use App\Http\Requests\UniversidadeRequest;
+use Illuminate\Support\Facades\DB;
 
 class UniversidadesController extends Controller
 {
@@ -35,20 +36,22 @@ class UniversidadesController extends Controller
         }
     }
 
-    public function index(){
+    public function index(Request $request){
 
         $user = Auth::user();
         $role = Auth::user()->role;
         $universidades = Universidades::latest()->orderBy('id', 'desc')->paginate(10);
 
-        return view('universidades', compact('universidades', 'user', 'role'));
+        $subscriptions = Auth::user()->subscription()->pluck('universidade_id');
+       
+        return view('universidades', compact('universidades', 'user', 'role', 'subscriptions'));
     }
 
     public function search(Request $request){
         $user = Auth::user();
         $role = Auth::user()->role;
         $filters = $request->all();
-
+        $subscriptions = Auth::user()->subscription()->pluck('universidade_id');
         $universidades = Universidades::where('alpha_two_code', 'LIKE', "%{$request->search}%")
         ->orWhere('country', 'LIKE', "%{$request->search}%")
         ->orWhere('domains', 'LIKE', "%{$request->search}%")
@@ -58,7 +61,7 @@ class UniversidadesController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
-        return view('universidades', compact('universidades','filters','user', 'role'));
+        return view('universidades', compact('universidades','filters','user', 'role', 'subscriptions'));
 
     }
 
@@ -88,6 +91,7 @@ class UniversidadesController extends Controller
 
         $user = Auth::user();
         $subscribe = $user->subscription;
+        
 
 
         return view('universidades_subscribe', compact('user','subscribe'));

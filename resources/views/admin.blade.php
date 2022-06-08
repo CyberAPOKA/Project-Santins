@@ -1,5 +1,18 @@
 @extends('layouts.master')
 @section('content')
+
+    
+@if (session('deleteUniversidades'))
+<script>
+    Swal.fire({
+        position: 'mid-mid',
+        icon: 'success',
+        title: 'University successfully deleted!',
+        showConfirmButton: false,
+        timer: 2000
+    })
+</script>
+@endif
     @if (session('universidadeStatus'))
         <script>
             Swal.fire({
@@ -53,12 +66,13 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Alpha two code</th>
+                    <th scope="col">Alpha-2 code</th>
                     <th scope="col">Country</th>
                     <th scope="col">Domains</th>
                     <th scope="col">Name</th>
                     <th scope="col">Web pages</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,39 +94,46 @@
                             @endforeach
                         </td>
                         <td>
-                            <form method="post" action="{{ route('universidades.status', $universidade->id) }}">
+                            <form method="post" action="{{ route('universidades.status', $universidade->id) }}"
+                                id="form" name="form">
                                 @csrf
 
                                 @if ($universidade->status == 0)
-                                    <select class="form-control" id="status" name="status"
+                                    <select class="form-control biri" id="status" name="status" onchange="this.form.submit()" 
                                         style="background-color: rgb(87, 168, 32); color: white">
                                     @else
-                                        <select class="form-control select-trade-color" id="status" name="status"
-                                            style="background-color: red; color: white">
+                                        <select class="form-control biri" id="status" name="status" onchange="this.form.submit()"
+                                        style="background-color: red; color: white">
                                 @endif
                                 <option value="{{ $universidade->status }}" class="approve">
                                     @if ($universidade->status == 0)
-                                        <div class="approve">
-                                            Approved
-                                        @else
+                                        <div class="">
+                                            Approved <i class="fa-solid fa-chevron-down"></i>
                                         </div>
-                                        <div class="reprove">
-                                            Not approved
+                                        @else
+                                        <div>
+                                            Not approved <i class="fa-solid fa-chevron-down"></i>
                                         </div>
                                     @endif
                                 </option>
 
                                 @if ($universidade->status == 0)
-                                    <option value="{{ 1 }}" class="approve">Reprove</option>
+                                    <option value="{{ 1 }}" class="repprove">Reprove </option>
                                 @else
                                     <option value="{{ 0 }}" class="approve">Approve</option>
                                 @endif
                                 </select>
 
-                                <button type="submit" class="form-control purple" name="subscribe">
-                                    Confirm
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST" action="{{ route('universidades.delete', $universidade->id) }}"
+                                id="deleteUniversidade">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="subscribe-button delete" onclick="deleteUniversidade(this)">
+                                    DELETE
                                 </button>
-
                             </form>
                         </td>
                     </tr>
@@ -132,4 +153,27 @@
         </div>
 
     </section>
+ 
+      <script>
+        function deleteUniversidade() {
+            event.preventDefault();
+            var form = event.target.form;
+            Swal.fire({
+                title: 'Do you really want to delete this university?',
+                text: "After deletion, data cannot be recovered!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, Delete!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+
+        }
+    </script>
+    
 @endsection

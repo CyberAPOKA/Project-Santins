@@ -3,7 +3,7 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        @if (Route::is('universidades.index') || Route::is('universidades.search'))
+        @if (Route::is('universidades.index') || Route::is('universidades.search') || Route::is('home.role'))
             <div class="col-md-8">
                 <form action="{{ route('universidades.search') }}" method="POST" class="search">
                     @csrf
@@ -48,14 +48,17 @@
                     <i class='bx bx-layer nav_icon'></i>
                     <span class="nav_name">ADMIN</span> </a>
                     @endif
+
+                    @if ($user->role == 0)
                     <a href="{{ route('universidades.index') }}"
                         class="nav_link {{ request()->is('universidades') ? 'active' : '' }}">
-                        <i class='bx bx-grid-alt nav_icon'></i>
+                        <i class="fa-solid fa-building-columns nav_icon"></i>
                         <span class="nav_name">Universities</span> </a>
-
+                        @endif
                     <a href="{{ route('universidades.create') }}"
                         class="nav_link {{ request()->is('universidades/create') ? 'active' : '' }}">
-                        <i class='bx bx-layer nav_icon'></i>
+                        
+                        <i class="fa-solid fa-plus nav_icon"></i>
                         <span class="nav_name2">Create university</span> </a>
 
                     <a href="{{ route('universidades.subscribe') }}"

@@ -204,6 +204,8 @@ a {
   color: white;
   border: #8000b3;
   border-radius: 3px 3px 3px 3px;
+  height: 2.2em;
+  width: 7em;
 }
 
 #header {
@@ -365,11 +367,13 @@ form.search::after {
 }
 
 .approve {
+  background-color: rgb(87, 168, 32) !important;
   text-align: center;
 }
 
-.select-trade-color {
-  background-color: green;
+.repprove {
+  background-color: red !important;
+  text-align: center;
 }
 
 .purple {
@@ -379,4 +383,21 @@ form.search::after {
 
 .web_page:hover{
     color: #8000b3;
+}
+
+.biri{
+  height: 2.25em;
+  width: 8em;
+}
+
+.reset-search{
+  height: 2em;
+  width: 10em;
+  background-color: #8000b3;
+  border-radius: 10px 10px 10px 10px;
+  border-color: #8000b3;
+}
+
+.reset-search a{
+  color: white;
 }

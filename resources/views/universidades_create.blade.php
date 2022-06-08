@@ -1,8 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <div class="container">
-        <form action="{{ route('universidades.store') }}" method="POST" id="formUniversidades"
-            onsubmit="return checkForm(this);">
+        <form action="{{ route('universidades.store') }}" method="POST" id="formInscricao" class="form">
             @csrf
             <div class="form-group">
                 <div class="col-md-12">
@@ -35,33 +34,35 @@
                         </div>
 
                         <p style="padding-top: 0.5em"><span style="color: red">Warning:</span> After creating a university,
-                          it will be under review by the team for approval.
+                            it will be under review by the team for approval.
                         </p>
 
                         <div class="text-center">
-                          <input type="submit" class="form-button-universidades">
+                            <button type="submit" id="btnsubmit" class="form-button-universidades submitBtn">Submit</button>
                         </div>
-                        {{-- <div class="text-center" style="padding-top: 10px">
-                            <input type="submit" name="myButton" value="Register">
-                            <input type="button" value="Reset Button" onclick="resetForm(this.form);">
-                        </div>--}}
-                       
+
+
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
-    <script type="text/javascript">
-        function checkForm(form) {
-            form.myButton.disabled = true;
-            form.myButton.value = "Please wait...";
-            return true;
-        }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-        function resetForm(form) {
-            form.myButton.disabled = false;
-            form.myButton.value = "Submit";
-        }
+    <script>
+        $('form').submit(function() {
+            if (typeof jQuery.data(this, "disabledOnSubmit") == 'undefined') {
+                jQuery.data(this, "disabledOnSubmit", {
+                    submited: true
+                });
+                $('input[type=submit], input[type=button]', this).each(function() {
+                    $(this).attr("disabled", "disabled");
+                });
+                return true;
+            } else {
+                return false;
+            }
+        });
     </script>
 @endsection

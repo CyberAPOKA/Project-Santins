@@ -1,17 +1,5 @@
 @extends('layouts.master')
 @section('content')
-    @if (session('deleteUniversidades'))
-        <script>
-            Swal.fire({
-                position: 'mid-mid',
-                icon: 'success',
-                title: 'University successfully deleted!',
-                showConfirmButton: false,
-                timer: 2000
-            })
-        </script>
-    @endif
-
     @if (session('subscriptionExist'))
         <script>
             Swal.fire({
@@ -79,15 +67,17 @@
                         <td>{{ $universidade->alpha_two_code }}</td>
                         <td>{{ $universidade->country }}</td>
                         <td>
-                         
-                            @foreach ((array)$universidade->domains as $domain)
+
+                            @foreach ((array) $universidade->domains as $domain)
                                 {{ $domain }}
                             @endforeach
                         </td>
                         <td>{{ $universidade->name }}</td>
                         <td>
-                            @foreach ((array)$universidade->web_pages as $web_page)
-                                <a href="{{ $web_page }}" class="web_page" target="_blank">{{ $web_page }}</a>
+                            @foreach ((array) $universidade->web_pages as $web_page)
+                                <a href="{{ $web_page }}" class="web_page"
+                                    onclick="followLink(event)" target="_blank">
+                                    {{ $web_page }}</a>
                             @endforeach
                         </td>
                         <td>
@@ -97,9 +87,13 @@
                                     <input hidden type="text" name="subscribe" value="{{ $universidade->id }}">
                                     <input hidden type="text" name="subscribe2" value="{{ $universidade->name }}">
 
-                                    <button type="submit" class="subscribe-button">
-                                        SIGN UP
-                                    </button>
+                                    @if ($subscriptions->contains($universidade->id))
+                                        <h6>Pending registration</h6>
+                                    @else
+                                        <button type="submit" class="subscribe-button">
+                                            SIGN UP
+                                        </button>
+                                    @endif
 
                                 </form>
                             @elseif ($user->role == 1)
@@ -110,10 +104,9 @@
                                     <button type="submit" class="subscribe-button delete" onclick="deleteUniversidade(this)">
                                         DELETE
                                     </button>
-
                                 </form>
                             @else
-                                Waiting for approval
+                                <h6>Waiting for approval</h6>
                             @endif
                         </td>
                     </tr>
@@ -127,34 +120,68 @@
             {{ $universidades->links() }}
         @endif
 
-        <div class="showing">
-            Showing {{ $universidades->firstItem() }} to {{ $universidades->lastItem() }}
-            of total {{ $universidades->total() }} entries
+        <div class="row">
+            <div class="col-md-6">
+                <div class="showing">
+                    Showing {{ $universidades->firstItem() }} to {{ $universidades->lastItem() }}
+                    of total {{ $universidades->total() }} entries
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <button type="button" class="reset-search" onclick="resetSearch(this)">
+                        <a href="{{ route('universidades.search') }}">RESET SEARCH</a>
+                    </button>
+
+                </div>
+
+            </div>
         </div>
+
         </div>
 
     </section>
 
-
     <script>
-        function deleteUniversidade() {
+        function resetSearch() {
             event.preventDefault();
-            var form = event.target.form;
             Swal.fire({
-                title: 'Você deseja realmente excluir esta universidade?',
-                text: "Após a exclusão, os dados não poderão ser recuperados!",
+                title: 'Do you really want to delete this university?',
+                text: "After deletion, data cannot be recovered!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Sim, Excluir!',
-                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Yes, Delete!',
+                cancelButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit();
+                    window.location = "search";
                 }
             });
 
+        }
+    </script>
+
+
+
+    <script>
+        function followLink(e) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'You clicked on a link and you will be redirected!',
+                text: "Are you sure you want to continue?",
+                icon: 'warning',
+                iconColor: '#red',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, go'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = e.target.href;
+                }
+            })
         }
     </script>
 @endsection
