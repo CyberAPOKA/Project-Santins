@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <div class="container">
-        <form action="{{ route('universidades.store') }}" method="POST" id="myForm" class="form">
+        <form action="{{ route('universidades.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <div class="col-md-12">
@@ -32,12 +32,12 @@
                             <input type="text" class="form-control" name="web_pages"
                                 placeholder="Example: https://www.harvard.edu/">
                         </div>
-
+                        @if($user->role == 0)
                         <p style="padding-top: 0.5em"><span style="color: red">Warning:</span> After creating a university,
                             it will be under review by the team for approval.
                         </p>
-
-                        <div class="text-center">
+                        @endif
+                        <div class="text-center" style="padding-top: 1em; padding-bottom:2em">
                             <button type="submit" id="btnSubmit" class="form-button-universidades">
                                 Submit
                             </button>

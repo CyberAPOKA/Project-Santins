@@ -19,6 +19,6 @@ class AdminAccess
         if (Auth()->check() and auth()->user()->role == 1) {
             return $next($request);
         } 
-        dd('acesso negado');
+        return to_route('home.index');
     }
 }

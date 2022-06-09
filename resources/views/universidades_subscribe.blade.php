@@ -21,6 +21,7 @@
                 <thead>
                   <tr>
                     <th scope="col">My subscriptions</th>
+                    <th scope="col">Enrollment date</th>
                     <th scope="col">Remove</th>
                   </tr>
                 </thead>
@@ -29,6 +30,7 @@
                       @foreach ($subscribe as $sub)
                     <tr>
                         <td>{{$sub->universidade_name}}</td>
+                        <td>{{ $sub->created_at }}</td>
                         <td>
                             <form action="{{route('subscription.remove', $sub->id)}}" method="POST" id="deleteSubscription">
                                 @method('DELETE')
