@@ -1,4 +1,27 @@
  <h1> Project-Santins </h1>
+ <h1> PATCH NOTES 2.0</h1>
+ <h2> NEWS </h2>
+    <p>-Sidebar with intuitive navigation</p>
+    <p>-Enrollment date in user subscriptions</p>
+    <p>-Universities created by admin start with approved status</p>
+    <p>-Different icons for user and admin in header</p>
+    <p>-Confirmation by clicking the web pages link</p>
+    <p>-Confirmation to reset the search filter</p>
+    <p>-View for admin see all subscriptions</p>
+    <p>-Now admin changes university status more easily</p>
+    <p>-Middlewares to restrict user and admin routes</p>
+    <p>-Informational message for the user when creating universities</p>
+<h2> BUG FIXES </h2>
+    <p>-Web Pages and domains columns rendering error</p>
+    <p>-User cannot view university id</p>
+    <p>-Now when the user enrolls in a university a "Pending Enrollment" message is displayed</p>
+    <p>-The university creation form now only has 1 button that does the function of the two old ones.</p>
+<h2> REMOVED </h2>
+    <p>-Page welcome</p>
+    <p>-All buttons loose on the page</p>
+    <p>-Dashboard</p>
+     <h2> END PATCH NOTES </h2>
+    <br>
 <h4> This project was developed for a selection process of the company Santins! </h4>
 <p>I made a restricted access system with two types of user, standard user and super admin user.</p>
 <p> The project consists of the user creating an account, logging in, registering at universities, viewing them and also removing their registration, the standard user can also suggest a university, universities created by standard users will be under review, and only the super admin user can change its status, super admin user can also delete universities. </p>
